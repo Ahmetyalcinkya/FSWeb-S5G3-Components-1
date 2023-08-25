@@ -102,8 +102,49 @@ const data = [
     {üç ayrı paragraf elementi}
 
     <button class="expandButton">+</button>
-  </div>
+  </div>*/
 
+function haberYapici(data) {
+  const hDiv = document.createElement("div");
+  hDiv.classList.add("article");
+
+  const hH2 = document.createElement("h2");
+  hH2.textContent = data.baslik;
+
+  const hP = document.createElement("p");
+  hP.textContent = data.tarih;
+
+  const p1 = document.createElement("p");
+  p1.textContent = data.ilkParagraf;
+
+  const p2 = document.createElement("p");
+  p2.textContent = data.ikinciParagraf;
+
+  const p3 = document.createElement("p");
+  p3.textContent = data.ucuncuParagraf;
+
+  const btn = document.createElement("button");
+  btn.classList.add("expandButton");
+  btn.textContent = "+";
+
+  hDiv.append(hH2);
+  hDiv.append(hP);
+  hDiv.append(p1);
+  hDiv.append(p2);
+  hDiv.append(p3);
+  hDiv.append(btn);
+
+  btn.addEventListener("click", () => {
+    hDiv.classList.toggle("article-open");
+  });
+  return hDiv;
+}
+const articles = document.querySelector(".articles");
+for (let veri of data) {
+  const news = haberYapici(veri);
+  articles.append(news);
+}
+/*
   Adım 2: Hala `haberYapici` içindeyiz, button.expandButton 'a bir click event dinleyici ekleyin.
   Bu dinleyici div.article öğesine 'article-open' class'ını ekleyip/çıkaracak (toogle).
 
